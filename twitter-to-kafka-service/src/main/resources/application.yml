@@ -1,0 +1,15 @@
+twitter-to-kafka-service:
+  twitter-keywords:
+    - Kotlin
+    - Spring
+    - Kafka
+    - Elasticsearch
+  runner-type: MOCK # can be { STANDARD, MODERN, MOCK }.
+  twitter-v2-data:
+    base-url: "https://api.twitter.com/2/tweets/search/stream?tweet.fields=created_at&expansions=author_id"
+    rules-base-url: "https://api.twitter.com/2/tweets/search/stream/rules"
+    bearer-token: ${TWITTER_BEARER_TOKEN}
+  mock-data:
+    min-tweet-length: 5
+    max-tweet-length: 15
+    sleep-ms: 3000
