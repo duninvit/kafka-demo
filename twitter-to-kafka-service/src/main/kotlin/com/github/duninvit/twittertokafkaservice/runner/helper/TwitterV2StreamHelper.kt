@@ -1,6 +1,6 @@
 package com.github.duninvit.twittertokafkaservice.runner.helper
 
-import com.github.duninvit.twittertokafkaservice.config.TwitterToKafkaServiceConfigData
+import com.github.duninvit.common.config.TwitterToKafkaServiceConfigData
 import com.github.duninvit.twittertokafkaservice.listener.TwitterKafkaStatusListener
 import mu.KotlinLogging
 import org.apache.http.client.config.CookieSpecs.STANDARD
