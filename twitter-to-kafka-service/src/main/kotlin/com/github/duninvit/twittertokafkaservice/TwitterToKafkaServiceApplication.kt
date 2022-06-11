@@ -1,24 +1,26 @@
 package com.github.duninvit.twittertokafkaservice
 
-import com.github.duninvit.common.config.TwitterToKafkaServiceConfigData
+import com.github.duninvit.twittertokafkaservice.init.StreamInitializer
 import com.github.duninvit.twittertokafkaservice.runner.StreamRunner
 import mu.KotlinLogging
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
+import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
 @ConfigurationPropertiesScan(basePackages = ["com.github.duninvit"])
+@ComponentScan(basePackages = ["com.github.duninvit"])
 internal class TwitterToKafkaServiceApplication(
-    private val twitterToKafkaServiceConfigData: TwitterToKafkaServiceConfigData,
-    private val streamRunner: StreamRunner
+    private val streamInitializer: StreamInitializer,
+    private val streamRunner: StreamRunner,
 ) : CommandLineRunner {
 
     private val logger = KotlinLogging.logger {}
 
     override fun run(vararg args: String?) {
-        logger.info { twitterToKafkaServiceConfigData.twitterKeywords }
+        streamInitializer.init()
         streamRunner.start()
     }
 }

@@ -1,6 +1,6 @@
 package com.github.duninvit.twittertokafkaservice.runner.impl
 
-import com.github.duninvit.common.config.TwitterToKafkaServiceConfigData
+import com.github.duninvit.common.configdata.TwitterToKafkaServiceConfigData
 import com.github.duninvit.twittertokafkaservice.runner.StreamRunner
 import com.github.duninvit.twittertokafkaservice.runner.helper.TwitterV2StreamHelper
 import mu.KotlinLogging
