@@ -1,5 +1,6 @@
 plugins {
     id("org.springframework.boot")
+    id("com.bmuschko.docker-spring-boot-application")
 
     kotlin("jvm")
     kotlin("plugin.spring")
@@ -23,4 +24,12 @@ dependencies {
     implementation("org.apache.avro:avro:1.11.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+// Reference guide: https://bmuschko.github.io/gradle-docker-plugin/current/user-guide/#usage_3
+docker {
+    springBootApplication {
+        baseImage.set("openjdk:17")
+        images.set(setOf("${project.group}/twitter-to-kafka-service:${project.version}"))
+    }
 }

@@ -22,17 +22,10 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21" apply false
+    id("com.bmuschko.docker-spring-boot-application") version "7.4.0" apply false
 }
 
-repositories {
-    gradlePluginPortal()
-    mavenCentral()
-    maven {
-        url = uri("https://packages.confluent.io/maven/")
-    }
-}
-
-subprojects {
+allprojects {
     repositories {
         gradlePluginPortal()
         mavenCentral()
@@ -43,7 +36,9 @@ subprojects {
 
     group = "com.github.duninvit"
     version = "0.0.1-SNAPSHOT"
+}
 
+subprojects {
     apply {
         plugin("io.spring.dependency-management")
         plugin("kotlin")
