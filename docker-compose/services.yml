@@ -6,6 +6,9 @@ services:
       - "5005:5005"
     volumes:
       - "./docker-logs:/workspace/twitter-to-kafka-service/logs"
+    depends_on:
+      - config-server
+    restart: on-failure
     environment:
       - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xms128m -Xmx256m"
       - "LOGGING_LEVEL_COM_GITHUB_DUNINVIT=info"
@@ -14,5 +17,23 @@ services:
       - "KAFKA-CONFIG_BOOTSTRAP-SERVERS=kafka-broker-1:9092, kafka-broker-2:9092, kafka-broker-3:9092"
       - "KAFKA-CONFIG_SCHEMA-REGISTRY-URL=http://schema-registry:8081"
       - "TWITTER-TO-KAFKA-SERVICE_ENABLE-MOCK-TWEETS=true"
+      - "SPRING_CLOUD_CONFIG_URI=http://config-server:8888"
+      - "JASYPT_PASSWORD=${JASYPT_PASSWORD}"
     networks:
       - ${GLOBAL_NETWORK:-services}
+  config-server:
+    image: ${GROUP_ID}/config-server:${SERVICE_VERSION:-latest}
+    ports:
+      - "5006:5006"
+    volumes:
+      - "./docker-logs:/workspace/config-server/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006 -Xms128m -Xmx256m"
+      - "JASYPT_PASSWORD=${JASYPT_PASSWORD}"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://config-server:8888/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
