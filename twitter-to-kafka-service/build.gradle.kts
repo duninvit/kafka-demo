@@ -13,6 +13,8 @@ dependencies {
     implementation(project(":kafka:kafka-producer"))
 
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.cloud:spring-cloud-starter-config:3.1.3")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.github.microutils:kotlin-logging-jvm")

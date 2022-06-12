@@ -1,6 +1,7 @@
 rootProject.name = "kafka-demo"
 include("twitter-to-kafka-service")
 
+include("config-server")
 include("common-config")
 include("common-config-data")
 
