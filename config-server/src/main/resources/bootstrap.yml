@@ -1,3 +1,7 @@
+jasypt:
+  encryptor:
+    password: ${JASYPT_PASSWORD}
+
 spring:
   application:
     name: configserver
@@ -7,7 +11,11 @@ spring:
         git:
           uri: https://github.com/duninvit/kafka-demo-config-server-repository
           username: duninvit
-          password:
+          password: ENC(+hBWr1IhqpIGO9U9EOy+KPYA/c0u81k5oHmmXAkiwHGGnTh0uBRoXQ06eB4UGkWnyG2CTYzf0yAveHE9P0CxB8D8gaKZsx3aW/IMAwRVpvA=)
           clone-on-start: true
           default-label: master
       fail-fast: true
+  security:
+    user:
+      name: spring_cloud_user
+      password: ENC(ewvruH3Va7QQCiI7rx7h/XgrW+NcH/2AYoy3fNVdXm/4FYaL/n0RG0a+1NinAheB)
