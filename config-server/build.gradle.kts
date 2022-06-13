@@ -18,7 +18,7 @@ dependencies {
 // Reference guide: https://bmuschko.github.io/gradle-docker-plugin/current/user-guide/#usage_3
 docker {
     springBootApplication {
-        baseImage.set("openjdk:17-alpine")
+        baseImage.set("openjdk:17-jdk-alpine")
         images.set(setOf("${project.group}/config-server:${project.version}"))
     }
 }
