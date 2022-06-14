@@ -5,13 +5,9 @@ import com.github.duninvit.twittertokafkaservice.runner.StreamRunner
 import mu.KotlinLogging
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.ComponentScan
 
-@SpringBootApplication
-@ConfigurationPropertiesScan(basePackages = ["com.github.duninvit"])
-@ComponentScan(basePackages = ["com.github.duninvit"])
+@SpringBootApplication(scanBasePackages = ["com.github.duninvit"])
 internal class TwitterToKafkaServiceApplication(
     private val streamInitializer: StreamInitializer,
     private val streamRunner: StreamRunner,
