@@ -13,6 +13,7 @@ val avroSerializerVersion: String by extra { "7.1.1" }
 val twitter4jVersion: String by extra { "4.0.7" }
 val httpclientVersion: String by extra { "4.5.13" }
 val jsonVersion: String by extra { "20220320" }
+val elasticsearchVersion: String by extra { "8.2.3" }
 
 buildscript {
     repositories {
