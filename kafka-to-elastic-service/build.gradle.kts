@@ -15,6 +15,9 @@ dependencies {
     implementation(project(":kafka:kafka-consumer"))
     implementation(project(":kafka:kafka-admin"))
     implementation(project(":kafka:kafka-model"))
+    implementation(project(":elastic:elastic-config"))
+    implementation(project(":elastic:elastic-index-client"))
+    implementation(project(":elastic:elastic-model"))
 
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.cloud:spring-cloud-starter-config:$springCloudVersion")

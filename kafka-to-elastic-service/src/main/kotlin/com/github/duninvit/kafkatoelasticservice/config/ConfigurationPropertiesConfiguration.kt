@@ -1,5 +1,6 @@
 package com.github.duninvit.kafkatoelasticservice.config
 
+import com.github.duninvit.common.configdata.ElasticConfigData
 import com.github.duninvit.common.configdata.KafkaConfigData
 import com.github.duninvit.common.configdata.KafkaConsumerConfigData
 import com.github.duninvit.common.configdata.RetryConfigData
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration
         KafkaConfigData::class,
         KafkaConsumerConfigData::class,
         RetryConfigData::class,
+        ElasticConfigData::class,
     ]
 )
 class ConfigurationPropertiesConfiguration
