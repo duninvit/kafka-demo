@@ -5,6 +5,8 @@ import com.github.duninvit.kafka.admin.client.KafkaAdminClient
 import com.github.duninvit.kafka.avro.model.TwitterAvroModel
 import com.github.duninvit.kafkatoelasticservice.consumer.KafkaConsumer
 import mu.KotlinLogging
+import org.springframework.boot.context.event.ApplicationStartedEvent
+import org.springframework.context.event.EventListener
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry
 import org.springframework.kafka.support.KafkaHeaders
@@ -20,6 +22,13 @@ class TwitterKafkaConsumer(
 ) : KafkaConsumer<Long, TwitterAvroModel> {
 
     private val logger = KotlinLogging.logger {}
+
+    @EventListener
+    fun onApplicationStarted(event: ApplicationStartedEvent) {
+        kafkaAdminClient.checkTopicsCreated()
+        logger.info { "Topics with name ${kafkaConfigData.topicNamesToCreate} is ready for operations!" }
+        kafkaListenerEndpointRegistry.getListenerContainer("twitterTopicListener")?.start()
+    }
 
     @KafkaListener(id = "twitterTopicListener", topics = ["\${kafka-config.topic-name}"])
     override fun receive(

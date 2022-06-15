@@ -1,14 +1,15 @@
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
 
 plugins {
-    kotlin("jvm")
-    id("com.github.davidmc24.gradle.plugin.avro") version "1.3.0"
+    id("com.github.davidmc24.gradle.plugin.avro")
 }
 
 dependencies {
+    val avroVersion: String by rootProject.extra
+
     implementation(project(":common-config"))
 
-    implementation("org.apache.avro:avro:1.11.0")
+    implementation("org.apache.avro:avro:$avroVersion")
 }
 
 avro {

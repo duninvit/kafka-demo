@@ -2,30 +2,32 @@ plugins {
     id("org.springframework.boot")
     id("com.bmuschko.docker-spring-boot-application")
 
-    kotlin("jvm")
     kotlin("plugin.spring")
 }
 
 dependencies {
+    val springCloudVersion: String by rootProject.extra
+    val springJasyptVersion: String by rootProject.extra
+    val avroVersion: String by rootProject.extra
+    val twitter4jVersion: String by rootProject.extra
+    val httpclientVersion: String by rootProject.extra
+    val jsonVersion: String by rootProject.extra
+
     implementation(project(":common-config-data"))
     implementation(project(":kafka:kafka-admin"))
     implementation(project(":kafka:kafka-model"))
     implementation(project(":kafka:kafka-producer"))
 
-    implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.cloud:spring-cloud-starter-config:3.1.3")
-    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.3")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("io.github.microutils:kotlin-logging-jvm")
-    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4")
+    implementation("org.springframework.cloud:spring-cloud-starter-config:$springCloudVersion")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap:$springCloudVersion")
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:$springJasyptVersion")
 
-    implementation("org.twitter4j:twitter4j-stream:4.0.7")
+    implementation("org.twitter4j:twitter4j-stream:$twitter4jVersion")
     // For twitter v2 implementation
-    implementation("org.apache.httpcomponents:httpclient:4.5.13")
-    implementation("org.json:json:20220320")
-    implementation("org.apache.avro:avro:1.11.0")
+    implementation("org.apache.httpcomponents:httpclient:$httpclientVersion")
+    implementation("org.json:json:$jsonVersion")
+    implementation("org.apache.avro:avro:$avroVersion")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

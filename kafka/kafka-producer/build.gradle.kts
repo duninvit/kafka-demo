@@ -5,7 +5,8 @@ plugins {
 
 dependencies {
     val springKafkaVersion: String by rootProject.extra
-    val avroSerializerVersion: String by extra { "7.1.1" }
+    val avroSerializerVersion: String by rootProject.extra
+
     implementation(project(":common-config-data"))
     implementation(project(":kafka:kafka-model"))
 

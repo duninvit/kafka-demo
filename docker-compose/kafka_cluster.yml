@@ -4,7 +4,7 @@ services:
     image: confluentinc/cp-zookeeper:${KAFKA_VERSION:-latest}
     hostname: zookeeper
     ports:
-      - "2181:2181"
+      - "127.0.0.1:2181:2181"
     environment:
       ZOOKEEPER_SERVER_ID: 1
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -23,7 +23,7 @@ services:
       - kafka-broker-2
       - kafka-broker-3
     ports:
-      - "8081:8081"
+      - "127.0.0.1:8081:8081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
@@ -35,7 +35,7 @@ services:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-1
     ports:
-      - "19092:19092"
+      - "127.0.0.1:19092:19092"
     depends_on:
       - zookeeper
     environment:
@@ -51,7 +51,7 @@ services:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-2
     ports:
-      - "29092:29092"
+      - "127.0.0.1:29092:29092"
     depends_on:
       - zookeeper
     environment:
@@ -67,7 +67,7 @@ services:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-3
     ports:
-      - "39092:39092"
+      - "127.0.0.1:39092:39092"
     depends_on:
       - zookeeper
     environment:
